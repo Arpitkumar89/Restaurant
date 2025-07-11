@@ -105,6 +105,18 @@ const ReviewsPage = () => {
   );
 };
 
+   const [review, setReview] = useState('');
+  const [submittedReview, setSubmittedReview] = useState('');
+
+  const handleReviewSubmit = () => {
+    if (review.trim() !== '') {
+      setSubmittedReview(review);
+      setReview('');
+      alert("Review submitted! ✅");
+    } else {
+      alert("Please write something before submitting.");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4 sm:px-6 lg:px-8">
@@ -252,88 +264,33 @@ const ReviewsPage = () => {
           </div>
 
           {/* Reviews List */}
-          <div className="divide-y divide-gray-200">
-            {filteredReviews.length > 0 ? (
-              filteredReviews.map((review) => (
-                <div key={review.id} className="p-6 hover:bg-gray-50 transition-colors">
-                  <div className="flex justify-between">
-                    <div>
-                      <h3 className="font-medium text-gray-900">{review.user}</h3>
-                      <div className="flex items-center mt-1">
-                        <div className="flex">
-                          {[...Array(5)].map((_, i) => (
-                            <StarIcon
-                              key={i}
-                              className={`h-5 w-5 ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}
-                            />
-                          ))}
-                        </div>
-                        {review.verified && (
-                          <span className="ml-2 inline-flex items-center text-xs text-green-600">
-                            <CheckBadgeIcon className="h-4 w-4 mr-1" />
-                            Verified Order
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <div className="text-sm text-gray-500">
-                      {review.date} • {review.visitType}
-                      {review.dish && (
-                        <span className="block text-right text-yellow-600 font-medium">{review.dish}</span>
-                      )}
-                    </div>
-                  </div>
+           <div className="p-6 bg-yellow-50 border-t border-yellow-100">
+              <h3 className="font-medium text-gray-900 mb-2">Enjoyed your meal?</h3>
+              <p className="text-gray-600 mb-4">Share your experience to help others discover great dishes!</p>
 
-                  <p className="mt-3 text-gray-700">{review.text}</p>
+              <textarea
+                className="w-full p-3 border border-yellow-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                rows="4"
+                placeholder="Write your review here..."
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
+              ></textarea>
 
-                  {/* Review Images */}
-                  {review.images.length > 0 && (
-                    <div className="mt-4 flex gap-3">
-                      {review.images.map((img, idx) => (
-                        <div 
-                          key={idx} 
-                          className="w-24 h-24 rounded-lg overflow-hidden border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow"
-                        >
-                          <img 
-                            src={img} 
-                            alt="Food" 
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Helpful Actions */}
-                  <div className="mt-4 flex items-center">
-                    <button 
-                      onClick={() => markHelpful(review.id)}
-                      className={`flex items-center text-sm ${review.isHelpful ? 'text-yellow-600 font-medium' : 'text-gray-500 hover:text-gray-700'}`}
-                    >
-                      <ArrowPathIcon className="h-4 w-4 mr-1" />
-                      Helpful ({review.helpfulCount})
-                    </button>
-                    <button className="ml-4 text-sm text-gray-500 hover:text-gray-700">
-                      Report
-                    </button>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div className="p-8 text-center text-gray-500">
-                No reviews match your current filters.
+              <div className="flex justify-end">
+                <button
+                  className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-medium rounded-lg shadow-sm transition-colors"
+                  onClick={handleReviewSubmit}
+                >
+                  Submit Review
+                </button>
               </div>
-            )}
-          </div>
 
-          {/* Review Prompt */}
-          <div className="p-6 bg-yellow-50 border-t border-yellow-100">
-            <h3 className="font-medium text-gray-900 mb-2">Enjoyed your meal?</h3>
-            <p className="text-gray-600 mb-4">Share your experience to help others discover great dishes!</p>
-            <button className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-medium rounded-lg shadow-sm transition-colors">
-              Write a Review
-            </button>
-          </div>
+              {submittedReview && (
+                <div className="mt-4 text-sm text-green-700 bg-green-100 p-3 rounded">
+                  <strong>Your Review:</strong> {submittedReview}
+                </div>
+              )}
+            </div>
         </div>
       </div>
     </div>

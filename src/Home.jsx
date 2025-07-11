@@ -23,6 +23,7 @@ import cupcake1 from "./assets/cupcake1.png";
 import cupcake2 from "./assets/cupcake2.png";
 import icecream1 from "./assets/icecream1.png";
 import icecream2 from "./assets/icecream2.png";
+import {useNavigate } from 'react-router-dom';
 
 const Home = () => {
     const [showVideo, setShowVideo] = useState(false);
@@ -184,6 +185,21 @@ const Home = () => {
         setSelectedOrderItem(item);
         setShowOrderModal(true);
     };
+
+    const navigate=useNavigate()
+
+    const handleOrder = () => {
+        // Optional: Pass item details to checkout page
+        navigate('/order');
+
+        // Scroll to top (optional, React Router usually handles this)
+        window.scrollTo(0, 0);
+        };
+    
+    const handleMenu=()=>{
+        navigate('/menu')
+        window.scrollTo(0, 0);
+    }
 
     return (
         <div className="bg-white">
@@ -505,7 +521,7 @@ const Home = () => {
                                     <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">{item.name}</h3>
                                     <p className="text-lg mb-6">{item.description}</p>
                                     <button 
-                                        onClick={() => handleOrderNow(item)}
+                                        onClick={handleOrder}
                                         className="bg-orange-500 text-white px-6 py-3 rounded-full font-bold hover:bg-orange-600 transition"
                                     >
                                         Order Now - ${item.price}
@@ -530,7 +546,8 @@ const Home = () => {
                         <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
                             Explore our full menu and discover more delicious options
                         </p>
-                        <button className="bg-orange-500 text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-orange-600 transition shadow-lg hover:shadow-xl">
+                        <button  onClick={handleMenu}
+                        className="bg-orange-500 text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-orange-600 transition shadow-lg hover:shadow-xl">
                             Explore Full Menu
                         </button>
                     </div>
@@ -839,7 +856,7 @@ const Home = () => {
                                 >
                                     Add to Cart
                                 </button>
-                                <button className="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition">
+                                <button onClick={handleOrder} className="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition">
                                     Order Now
                                 </button>
                             </div>
@@ -849,9 +866,7 @@ const Home = () => {
                                     <p className="text-sm text-gray-600 mb-2">
                                         {cartItems.length} item{cartItems.length !== 1 ? 's' : ''} in cart
                                     </p>
-                                    <button className="bg-red-500 text-white px-4 py-1 rounded-full text-sm hover:bg-red-600 transition">
-                                        View Cart
-                                    </button>
+                                    
                                 </div>
                             )}
                         </div>

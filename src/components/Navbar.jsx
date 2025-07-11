@@ -46,6 +46,14 @@ const Navbar = () => {
           <Link to="/menu" className="hover:text-amber-400">Menu</Link>
           <Link to="/about" className="hover:text-amber-400">About</Link>
           <Link to="/contact" className="hover:text-amber-400">Contact</Link>
+
+          {/* Login Button */}
+            <Link
+              to="/login"
+              className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-100 transition"
+            >
+              Login
+            </Link>
           
           {/* {isLoggedIn ? (
             <>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaStar, FaHeart, FaShoppingCart, FaFilter } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 // Sample menu data
 const menuData = [
@@ -151,6 +152,11 @@ const MenuPage = () => {
     }
   };
 
+  const navagate=useNavigate();
+  const handleAdd=()=>{
+    navagate('/add')
+  }
+
   // SVG Wave Animation Component
   const WaveAnimation = () => (
     <div className="absolute bottom-0 left-0 w-full overflow-hidden">
@@ -179,37 +185,41 @@ const MenuPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 to-amber-50">
+
+
       {/* Header with search */}
       <header className="relative bg-white shadow-md py-6">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div>
-              <h1 className="text-3xl font-bold text-orange-600">Gourmet Delights</h1>
-              <p className="text-amber-700">Premium dining experience</p>
-            </div>
-            
+
+            {/* Search Input */}
             <div className="relative w-full md:w-1/3">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <FaSearch className="text-gray-400" />
               </div>
+
               <input
                 type="text"
                 placeholder="Search dishes..."
-                className="w-full pl-10 pr-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-orange-300"
+                className="w-full pl-10 pr-4 py-2 border rounded-full focus:outline-none"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            
-            <button 
-              className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition"
-              onClick={() => setShowFilters(!showFilters)}
-            >
-              <FaFilter /> Filters
-            </button>
+
+            {/* Filter Button */}
+            <div>
+              <button
+                className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition"
+                onClick={() => setShowFilters(prev => !prev)}
+              >
+                <FaFilter /> Filters
+              </button>
+            </div>
           </div>
         </div>
-        <WaveAnimation />
+
+       
       </header>
 
       <main className="container mx-auto px-4 py-8">
@@ -263,7 +273,6 @@ const MenuPage = () => {
                 key={dish.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
@@ -304,7 +313,7 @@ const MenuPage = () => {
                       <span className="text-sm font-medium">{dish.rating}</span>
                     </div>
                     
-                    <button className="flex items-center gap-1 bg-orange-500 text-white px-3 py-1 rounded-full text-sm hover:bg-orange-600 transition">
+                    <button onClick={handleAdd} className="flex items-center gap-1 bg-orange-500 text-white px-3 py-1 rounded-full text-sm hover:bg-orange-600 transition">
                       <FaShoppingCart size={12} /> Add
                     </button>
                   </div>

@@ -696,7 +696,7 @@ const AboutUs = () => {
                   <div className="flex items-center mb-6">
                     <div className="flex-shrink-0 mr-4">
                       <img 
-                        src={testimonial.image} 
+                        src={kitchen} 
                         alt={testimonial.author} 
                         className="w-12 h-12 rounded-full object-cover"
                       />
@@ -796,39 +796,6 @@ const AboutUs = () => {
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* 11. Contact CTA */}
-      <section className="py-20 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Experience Our Cuisine?</h2>
-            <p className="text-xl text-amber-200 max-w-2xl mx-auto mb-8">
-              Book your table today or order for delivery
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <button className="bg-amber-600 text-white px-8 py-3 rounded-full font-bold hover:bg-amber-700 transition">
-                Make a Reservation
-              </button>
-              <button className="bg-white text-gray-900 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition">
-                Order Delivery
-              </button>
-            </div>
-            <div className="mt-8 flex justify-center space-x-6">
-              <a href="#" className="text-gray-300 hover:text-white">
-                <FaInstagram size={24} />
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white">
-                <FaFacebook size={24} />
-              </a>
-            </div>
-          </motion.div>
         </div>
       </section>
     </div>
