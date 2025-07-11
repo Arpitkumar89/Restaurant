@@ -264,6 +264,7 @@ const ReviewsPage = () => {
           </div>
 
           {/* Reviews List */}
+          
            <div className="p-6 bg-yellow-50 border-t border-yellow-100">
               <h3 className="font-medium text-gray-900 mb-2">Enjoyed your meal?</h3>
               <p className="text-gray-600 mb-4">Share your experience to help others discover great dishes!</p>
