@@ -5,8 +5,8 @@ import { IoFastFood } from "react-icons/io5";
 import { motion } from 'framer-motion';
 
 // Import your images here (replace with your actual imports)
-import wts1 from './assets/wts1.png';
-import wts3 from './assets/wts3.png';
+import wts1 from './assets/Wts1.png';
+import wts3 from './assets/Wts3.png';
 import Bannervideo from './assets/Bannervideo.mp4';
 import Bannerfood from './assets/Bannerfood.png';
 import BannerSmall1 from './assets/BannerSmall1.png';
